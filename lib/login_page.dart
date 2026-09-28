@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Mytextfield(
               hint: "Input Username",
               txtcontroller: txtusername,
+              numericOnly: false,
             ),
           ),
           Container(
@@ -34,6 +35,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Mytextfield(
               hint: "Input Password",
               txtcontroller: txtpassword,
+              numericOnly: false,
             ),
           ),
           Container(

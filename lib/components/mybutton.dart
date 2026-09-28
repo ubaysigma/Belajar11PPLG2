@@ -3,13 +3,20 @@ import 'package:flutter/material.dart';
 class Mybutton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-  const Mybutton({super.key, required this.text, required this.onPressed});
+  final ButtonStyle? style;
+  final EdgeInsetsGeometry? margin;
+  const Mybutton({super.key, required this.text, required this.onPressed,this.style, this.margin = EdgeInsets.zero});
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return Padding(
+      padding: margin!,
+      child:ElevatedButton(
+      
       onPressed: onPressed,
       child: Text(text),
+      style: style,
+      )
     );
   }
 }
