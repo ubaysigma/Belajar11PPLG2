@@ -13,38 +13,38 @@ class ConfirmRegistrationPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Confirm Registration"),
       ),
-      body: Obx(() => Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  "Registration Confirmed",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20, ),
-                _infoRow("Nama Lengkap", controller.namalengkap.value),
-                _infoRow("Email", controller.email.value),
-                _infoRow("Jenis Kelamin", controller.jeniskelamin.value),
-                _infoRow("No WhatsApp", controller.nowa.value),
-                const SizedBox(height: 30),
-                SizedBox(
-                  width: 250,
-                  child: ElevatedButton(
-                    onPressed: () => Get.back(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(230, 255, 116, 2),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: const Text("Back to Registration"),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              "Registration Confirmed",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            _infoRow("Nama Lengkap", controller.namalengkap),
+            _infoRow("Email", controller.email),
+            _infoRow("Jenis Kelamin", controller.jeniskelamin),
+            _infoRow("No WhatsApp", controller.nowa),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: 250,
+              child: ElevatedButton(
+                onPressed: () => Get.back(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(230, 255, 116, 2),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-              ],
+                child: const Text("Back to Registration"),
+              ),
             ),
-          )),
+          ],
+        ),
+      ),
     );
   }
 

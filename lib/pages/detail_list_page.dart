@@ -1,28 +1,102 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:belajarflutter11pplg2/controllers/detail_list_controller.dart';
+
 class DetailListPage extends StatelessWidget {
-  const new({super.key});
+  DetailListPage({super.key});
+
+  final DetailListController controller = Get.put(DetailListController());
 
   @override
   Widget build(BuildContext context) {
+    final makanan = controller.makanan;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Detail List Makanan"),
       ),
-      body: Container(
-        margin: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [            
-            Image.network(Get.arguments["gambar"] ?? "https://via.placeholder.com/150",height: 200,width: 200,fit: BoxFit.cover,),
-            const SizedBox(height: 15),
-            Text("Nama Makanan : ${Get.arguments["namaMakanan"]}",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-            Text("Harga : ${Get.arguments["harga"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-            Text("Kategori : ${Get.arguments["kategori"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-            Text("Deskripsi : ${Get.arguments["deskripsi"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: const Color.fromARGB(255, 120, 118, 118)),),
-            Text("Rating : ${Get.arguments["rating"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: const Color.fromARGB(255, 253, 179, 7)),),
-          ],
-        ),
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  makanan.gambar,
+                  width: double.infinity,
+                  height: 220,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                makanan.namaMakanan,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                "Rp ${makanan.harga}",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
+              ),
+              SizedBox(height: 8),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.blue.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  makanan.kategori,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+              SizedBox(height: 12),
+              Row(
+                children: [
+                  Icon(Icons.star, color: Colors.amber, size: 20),
+                  SizedBox(width: 4),
+                  Text(
+                    makanan.rating,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16),
+              Text(
+                "Deskripsi:",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 6),
+              Text(
+                makanan.deskripsi,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Color.fromARGB(255, 100, 100, 100),
+                  height: 1.5,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
