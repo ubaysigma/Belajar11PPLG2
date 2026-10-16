@@ -21,7 +21,7 @@ class DetailListPage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
+              ClipRRect(//ngebungkus Image.Network biar bisa kasih border radius
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   makanan.gambar,
@@ -38,7 +38,6 @@ class DetailListPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8),
               Text(
                 "Rp ${makanan.harga}",
                 style: TextStyle(
@@ -47,7 +46,6 @@ class DetailListPage extends StatelessWidget {
                   color: Colors.green,
                 ),
               ),
-              SizedBox(height: 8),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
@@ -63,7 +61,6 @@ class DetailListPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 12),
               Row(
                 children: [
                   Icon(Icons.star, color: Colors.amber, size: 20),
@@ -77,7 +74,6 @@ class DetailListPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
               Text(
                 "Deskripsi:",
                 style: TextStyle(
@@ -85,7 +81,6 @@ class DetailListPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 6),
               Text(
                 makanan.deskripsi,
                 style: TextStyle(

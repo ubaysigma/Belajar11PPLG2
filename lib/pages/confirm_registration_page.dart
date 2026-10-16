@@ -22,12 +22,10 @@ class ConfirmRegistrationPage extends StatelessWidget {
               "Registration Confirmed",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 20),
             _infoRow("Nama Lengkap", controller.namalengkap),
             _infoRow("Email", controller.email),
             _infoRow("Jenis Kelamin", controller.jeniskelamin),
             _infoRow("No WhatsApp", controller.nowa),
-            const SizedBox(height: 30),
             SizedBox(
               width: 250,
               child: ElevatedButton(
