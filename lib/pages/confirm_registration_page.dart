@@ -26,7 +26,7 @@ class ConfirmRegistrationPage extends StatelessWidget {
             _infoRow("Email", controller.email),
             _infoRow("Jenis Kelamin", controller.jeniskelamin),
             _infoRow("No WhatsApp", controller.nowa),
-            SizedBox(
+            Container(
               width: 250,
               child: ElevatedButton(
                 onPressed: () => Get.back(),
@@ -52,7 +52,7 @@ class ConfirmRegistrationPage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          Container(
             width: 130,
             child: Text(
               label,

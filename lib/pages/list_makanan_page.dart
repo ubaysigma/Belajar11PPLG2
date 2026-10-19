@@ -24,7 +24,7 @@ class ListMakananPage extends StatelessWidget {
                 Get.toNamed(Routes.detailListPage, arguments: makanan);
               },
               child: ListTile(
-                leading: ClipRRect( //ngebungkus Image.Network biar bisa kasih border radius
+                leading: ClipRRect( 
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
                     makanan.gambar,
