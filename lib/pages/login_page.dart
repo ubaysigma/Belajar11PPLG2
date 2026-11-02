@@ -1,61 +1,31 @@
-import 'package:flutter/material.dart';
-import 'package:belajarflutter11pplg2/components/mytextfield.dart';
 import 'package:belajarflutter11pplg2/components/mybutton.dart';
-import 'package:belajarflutter11pplg2/components/mytext.dart';
+import 'package:belajarflutter11pplg2/components/mytextfield.dart';
+import 'package:belajarflutter11pplg2/controllers/login_page_controller.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+   new({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
+  final controller = Get.put(LoginPageController());
 
-class _LoginPageState extends State<LoginPage> {
-  TextEditingController txtusername = TextEditingController();
-  TextEditingController txtpassword = TextEditingController();
-  String statuslogin = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login Page")),
-      body: Column(
-        children: [
-          MyText(text: "Status Login : $statuslogin"),
-          
-          Container(
-            margin: EdgeInsets.all(10),
-            child: Mytextfield(
-              hint: "Input Username",
-              txtcontroller: txtusername,
-              numericOnly: false,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10),
-            child: Mytextfield(
-              hint: "Input Password",
-              txtcontroller: txtpassword,
-              numericOnly: false,
-            ),
-          ),
-          Container(
-            margin:EdgeInsets.all(10),
-            child: Mybutton(
-              text: "Login",
-              onPressed: () {
-                if (txtusername.text == "admin" && txtpassword.text == "admin") {
-                  setState(() {
-                    statuslogin = "Berhasil";
-                  });
-                } else {
-                  setState(() {
-                    statuslogin = "Gagal";
-                  });
-                }
-              },
-            ),
-          )
-        ],
+      appBar: AppBar(title: Text("Login API"),),
+      body: Center(
+        child: Column(
+          children: [
+            Mytextfield(hint: "Masukkan Username", controller: controller.txtusername),
+            Mytextfield(hint: "Masukkan Password", controller: controller.txtpassword),
+            Obx(() => controller.isLoading.value ? Center(child: CircularProgressIndicator(),) :
+            Mybutton(text: "Enter",onPressed: () {
+              controller.login();  
+            },
+            )),
+            
+          ],
+        ),
       ),
     );
   }

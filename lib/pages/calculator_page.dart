@@ -32,12 +32,12 @@ class CalculatorPage extends StatelessWidget {
         children: [
           Mytextfield(
             hint: "input angka 1",
-            txtcontroller: txtangka1,
+            controller: txtangka1,
             numericOnly: true,
           ),
           Mytextfield(
             hint: "input angka 2",
-            txtcontroller: txtangka2,
+            controller: txtangka2,
             numericOnly: true,
           ),
           Row(

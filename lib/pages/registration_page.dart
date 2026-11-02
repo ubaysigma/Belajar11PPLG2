@@ -22,15 +22,15 @@ class RegistrationPage extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.all(20),
-            child: Mytextfield(hint: "nama lengkap", txtcontroller: txtnamalengkap, numericOnly: false),
+            child: Mytextfield(hint: "nama lengkap", controller: txtnamalengkap, numericOnly: false),
           ),
           Container(
             margin: EdgeInsets.all(20),
-            child: Mytextfield(hint: "email", txtcontroller: emailcontroller, numericOnly: false),
+            child: Mytextfield(hint: "email", controller: emailcontroller, numericOnly: false),
           ),
           Container(
             margin: EdgeInsets.all(20),
-            child: Mytextfield(hint: "No WhatsApp", txtcontroller: txtnowa, numericOnly: true),
+            child: Mytextfield(hint: "No WhatsApp", controller: txtnowa, numericOnly: true),
           ),
 
           // Dropdown jenis kelamin

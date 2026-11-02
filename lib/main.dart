@@ -1,6 +1,6 @@
-import 'package:belajarflutter11pplg2/pages/calculator_page.dart';
+// import 'package:belajarflutter11pplg2/pages/calculator_page.dart';
 import 'package:flutter/material.dart';
-import 'package:belajarflutter11pplg2/pages/login_page.dart';
+// import 'package:belajarflutter11pplg2/pages/login_page.dart';
 import 'package:get/get.dart';
 import 'package:belajarflutter11pplg2/routes.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         title: "Belajar Flutter 11 PPLG 2",
-        initialRoute: Routes.list_makanan,
+        initialRoute: Routes.login_page,
         getPages: Routes.myPages,
     );
     
