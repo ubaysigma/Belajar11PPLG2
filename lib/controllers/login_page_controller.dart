@@ -1,7 +1,7 @@
-import 'dart:convert';
-
+import 'package:belajarflutter11pplg2/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:belajarflutter11pplg2/models/loginmodel.dart';
 import 'package:http/http.dart' as http;
 
 class LoginPageController extends GetxController{
@@ -9,6 +9,7 @@ class LoginPageController extends GetxController{
   TextEditingController txtpassword = TextEditingController();
   
   var isLoading = false.obs;
+  var loginModel = Rxn<LoginModel>();
 
   void login () async
   {
@@ -28,13 +29,15 @@ class LoginPageController extends GetxController{
         isLoading.value = false;
         if(response.statusCode == 200)
         {
-          final data = jsonDecode(response.body);
-          if(data['status'] == true)
+          loginModel.value = loginModelFromJson(response.body);
+
+          if(loginModel.value?.status ==true)
           {
-            Get.snackbar("Berhasil", "pesan");
+            Get.snackbar("PESAN", loginModel.value?.message ?? "BERHASIL");
+            Get.offNamed(Routes.main_menu);
           }else
           {
-            Get.snackbar("Gagal", "pesan");
+            Get.snackbar("PESAN", loginModel.value?.message ?? "GAGAL");
           }
         }else
         {
