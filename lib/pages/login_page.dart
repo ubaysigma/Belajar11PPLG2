@@ -1,11 +1,12 @@
 import 'package:belajarflutter11pplg2/components/mybutton.dart';
 import 'package:belajarflutter11pplg2/components/mytextfield.dart';
 import 'package:belajarflutter11pplg2/controllers/login_page_controller.dart';
+import 'package:belajarflutter11pplg2/routes.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-   new({super.key});
+  LoginPage({super.key});
 
   final controller = Get.put(LoginPageController());
 
@@ -21,6 +22,7 @@ class LoginPage extends StatelessWidget {
             Obx(() => controller.isLoading.value ? Center(child: CircularProgressIndicator(),) :
             Mybutton(text: "Enter",onPressed: () {
               controller.login();  
+              
             },
             )),
             

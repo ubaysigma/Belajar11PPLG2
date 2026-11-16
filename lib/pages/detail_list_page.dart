@@ -29,7 +29,7 @@ class DetailListPage extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            makanan.namaMakanan,
+            makanan.name,
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
