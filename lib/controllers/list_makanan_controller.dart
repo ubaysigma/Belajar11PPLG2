@@ -1,14 +1,36 @@
+import 'package:belajarflutter11pplg2/models/makananmodel.dart';
 import 'package:get/get.dart';
-import 'package:belajarflutter11pplg2/models/models_makanan.dart';
+import 'package:http/http.dart' as http;
 
 class ListMakananController extends GetxController {
+  var datamakanan = <MakananModels>[].obs;
+  var isLoading = true.obs;
 
-  List<MakananModel> datamakanan = [
-    MakananModel(namaMakanan: "Nasgor Goreng",harga: "15.000",deskripsi: "Nasi goreng dengan bumbu spesial",gambar: "https://takestwoeggs.com/wp-content/uploads/2025/03/Overhead-plate-Nasi-Goreng-Indonesian-Fried-Rice.jpg",rating: "4.5",kategori: "Makanan Berat"),
-    MakananModel(namaMakanan: "Mie Goreng",harga: "12.000",deskripsi: "Mie goreng dengan bumbu spesial",gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw0ymqaAMuXNqJEszBXEsORok3KByV8zC7qiwOe99DJw&s=10",rating: "4.0",kategori: "Makanan Berat"),
-    MakananModel(namaMakanan: "Ayam Goreng",harga: "20.000",deskripsi: "Ayam goreng dengan bumbu spesial",gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf6T8S6km-EUt_x1U_o-uVLU0ZZOsarPwC-CRn8QIa-w&s=10",rating: "4.8",kategori: "Makanan Berat"),
-    MakananModel(namaMakanan: "Sate Ayam",harga: "18.000",deskripsi: "Sate ayam dengan bumbu spesial",gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlPjDgnl93pX-fDj8QqTH4GBR94YHI800YcMqywy_Vpg&s=10",rating: "4.2",kategori: "Makanan Berat"),
-    MakananModel(namaMakanan: "Bakso",harga: "15.000",deskripsi: "Bakso dengan bumbu spesial",gambar: "https://upload.wikimedia.org/wikipedia/commons/2/28/Bakso_mi_bihun.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",rating: "4.2",kategori: "Makanan Berat"),
-    MakananModel(namaMakanan: "Soto Ayam",harga: "17.000",deskripsi: "Soto ayam dengan bumbu spesial",gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2G1AUFghxL7kyvpunKqSgPOEduEaB47XQ1fnRvBXf0A&s=10",rating: "4.3",kategori: "Makanan Berat"),
-  ];
+  // 1. Otomatis jalankan fooddata() saat controller pertama kali dipanggil
+  @override
+  void onInit() {
+    super.onInit();
+    fooddata();
+  }
+
+  Future<void> fooddata() async {
+    try {
+      isLoading.value = true;
+      final response = await http.get(
+        Uri.parse('https://6afa635c730c1d152f322272.mockapi.io/api/v1/food'),
+      );
+
+      if (response.statusCode == 200) {
+        datamakanan.value = makananModelsFromJson(response.body);
+      } else {
+        Get.snackbar('Gagal', 'Error server: ${response.statusCode}');
+      }
+    } catch (e) {
+      // 2. Tampilkan pesan error jika gagal koneksi / salah parsing
+      Get.snackbar('Error', 'Gagal memuat data: $e');
+    } finally {
+      // 3. Wajib matikan loading baik saat berhasil maupun gagal
+      isLoading.value = false;
+    }
+  }
 }
